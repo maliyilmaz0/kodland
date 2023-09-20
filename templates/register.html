@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Kayıt ve Giriş</title>
+    <link rel="stylesheet" type="text/css" href="/templates/register.css">
+    <link href="https://fonts.googleapis.com/css2?family=Jost:wght@500&display=swap" rel="stylesheet">
+</head>
+<body>
+<div class="main">
+
+    <div class="signup">
+        <form action="/api/v1/users" method="POST">
+            <label for="chk" aria-hidden="true">Kayıt Ol</label>
+            <input type="text" name="username" placeholder="Kullanıcı Adı" required="">
+            <input type="email" name="email" placeholder="E-posta" required="">
+            <input type="password" name="password" placeholder="Şifre" required="">
+            <button type="submit">Kayıt Ol</button>
+        </form>
+        <button onclick="window.location.href='/login'" class="login-button">Giriş Yap</button>
+    </div>
+
+
+</div>
+</body>
+</html>

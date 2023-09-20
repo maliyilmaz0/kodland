@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Quiz App</title>
+    <link rel="stylesheet" type="text/css" href="/templates/dashboard.css">
+
+</head>
+<body>
+<div class="container">
+    <h1>Quiz App</h1>
+    <div id="quiz">
+        {% if question %}
+            <p>{{ question.question }}</p>
+            <form id="question-form" method="POST">
+                {% for option in question.options %}
+                    <label>
+                        <input type="radio" name="answer" value="{{ option }}">
+                        {{ option }}
+                    </label>
+                {% endfor %}
+                <input type="hidden" name="question_id" value="{{ question._id }}">
+                <input type="submit" value="Submit" class="button">
+            </form>
+        {% else %}
+            <p>No question available.</p>
+        {% endif %}
+    </div>
+    <div id="result" class="result">
+        {% if correct_answer is not none %}
+            {% if correct_answer %}
+                <p>Doğru!</p>
+            {% else %}
+                <p>Yanlış.</p>
+            {% endif %}
+        {% endif %}
+        <p>Points: {{ user_points }}</p>
+    </div>
+    <div id="leaderboard" class="leaderboard">
+        <h2>Leaderboard</h2>
+        <ol>
+            {% for user in leaderboard %}
+                <li>{{ user.username }} - {{ user.points }} puan</li>
+            {% endfor %}
+        </ol>
+    </div>
+    <a href="/logout" class="button">Logout</a>
+</div>
+
+</body>
+</html>

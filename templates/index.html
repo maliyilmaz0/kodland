@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Weather Forecast App</title>
+    <link rel="stylesheet" href="/templates/style.css">
+</head>
+<body>
+<div>
+    <div class="login-button-container">
+        <a href="/login" class="login-button">Login</a>
+    </div>
+    <div class="container">
+        <div class="weather-input">
+            <h3>Bir Şehir İsmi Girin</h3>
+            <form method="POST">
+                <label for="city">Şehir İsmi:</label>
+                <input class="city-input" type="text" id="city" name="city" required>
+                <button class="search-btn" type="submit">Ara</button>
+            </form>
+        </div>
+        <div class="weather-data">
+            <div class="current-weather">
+                <div class="details">
+                    <h2>{{ city }}</h2>
+                    {% if forecasts %}
+                        <h6>Sıcaklık: {{ forecasts[0].temperature }}°C</h6>
+                        <h6>Açıklama: {{ forecasts[0].description }}</h6>
+                    {% else %}
+                        <p>Havadurumu Tahmini Mevcut Değil</p>
+                    {% endif %}
+                </div>
+            </div>
+            <div class="days-forecast">
+                <h2>3 Günlük Havadurumu Tahmini</h2>
+                <ul class="weather-cards">
+                    {% for forecast in forecasts %}
+                        <li class="card">
+                            <h3>{{ forecast['date'] }}</h3>
+                            <h6>{{ forecast['day_name'] }}</h6>
+                            <h6>Sıcaklık: {{ forecast['temperature'] }}°C</h6>
+                            <h6>Açıklama: {{ forecast['description'] }}</h6>
+                        </li>
+                    {% endfor %}
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>
